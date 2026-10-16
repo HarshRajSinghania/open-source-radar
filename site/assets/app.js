@@ -171,7 +171,12 @@
     renderMore();
 
     const hasFilter = values.language || values.topic || values.level ||
-      values.activity || values.rules || values.q;
+      values.activity || values.rules || values.q ||
+      (values.sort && values.sort !== "updated");
+    const resetButton = form.querySelector("button.reset");
+    if (resetButton) {
+      resetButton.disabled = !hasFilter;
+    }
     if (!hasFilter) {
       document.title = originalTitle;
     } else {
